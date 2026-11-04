@@ -1,0 +1,13 @@
+# Kernel parameters from the working BC-250 machine.
+# install.sh adds any that are missing. It does not copy root= or rootflags.
+# amdgpu.cs_eight_core_map=1 is added only when the installed kernel still
+# has that module parameter. Current BC-250 kernels map 6-core and 8-core
+# telemetry themselves, and an unknown amdgpu parameter can stop the GPU
+# driver from loading.
+nowatchdog
+systemd.zram=0
+zswap.enabled=1
+zswap.max_pool_percent=25
+zswap.compressor=lz4
+ttm.pages_limit=3145728
+amdgpu.vm_update_mode=3

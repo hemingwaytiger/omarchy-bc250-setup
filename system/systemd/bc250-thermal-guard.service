@@ -1,0 +1,18 @@
+[Unit]
+Description=BC-250 thermal guard (caps GPU max clock via governor D-Bus when Tctl is hot)
+After=cyan-skillfish-governor-smu.service dbus.service
+Wants=cyan-skillfish-governor-smu.service
+
+[Service]
+ExecStart=/usr/local/bin/bc250-thermal-guard
+Restart=always
+RestartSec=5
+# Runs as an unprivileged throwaway user; D-Bus policy lets any user set the range
+DynamicUser=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target

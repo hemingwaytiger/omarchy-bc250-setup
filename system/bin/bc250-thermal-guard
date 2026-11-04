@@ -1,0 +1,78 @@
+#!/bin/bash
+# bc250-thermal-guard: lowers the cyan-skillfish governor's GPU max clock when the
+# BC-250 chip (k10temp Tctl, shared CPU+GPU die) gets hot, and restores it when cool.
+# Only uses the governor's D-Bus Range API. Never touches CPU, SMU or voltages.
+#   --dry-run   log what it would do, change nothing
+#   --once      print one reading and exit
+HOT=${HOT:-85}          # C: at/above this, step max clock down
+COOL=${COOL:-75}        # C: at/below this, step max clock back up
+STEP_DOWN=${STEP_DOWN:-100}   # MHz per step down
+STEP_UP=${STEP_UP:-50}        # MHz per step up
+FLOOR=${FLOOR:-1000}          # MHz, never cap below this
+UP_EVERY=${UP_EVERY:-3}       # seconds between up-steps
+INTERVAL=${INTERVAL:-1}       # seconds between checks
+
+SVC=com.cyanskillfish.Governor
+RIF=com.cyanskillfish.Governor.Range
+CUR=/com/cyanskillfish/Governor/Range/Current
+INI=/com/cyanskillfish/Governor/Range/Initial
+DRY=0; ONCE=0
+for a in "$@"; do case $a in --dry-run) DRY=1;; --once) ONCE=1;; esac; done
+
+log() { echo "$(date '+%H:%M:%S') $*"; }
+getp() { busctl --system get-property "$SVC" "$1" "$RIF" "$2" 2>/dev/null | awk '{print $2}'; }
+setmax() {
+  if [ "$DRY" = 1 ]; then log "DRY-RUN would set max=$1 MHz"; return 0; fi
+  busctl --system set-property "$SVC" "$CUR" "$RIF" Max u "$1"
+}
+
+TCTL="${TCTL_FILE:-}"
+[ -z "$TCTL" ] && for h in /sys/class/hwmon/hwmon*; do
+  [ "$(cat "$h/name" 2>/dev/null)" = k10temp ] || continue
+  for l in "$h"/temp*_label; do
+    [ "$(cat "$l")" = Tctl ] && TCTL="${l%_label}_input"
+  done
+done
+[ -n "$TCTL" ] || { log "k10temp Tctl not found"; exit 1; }
+
+readtemp() { local m; m=$(cat "$TCTL") || return 1; echo $(( (m + 500) / 1000 )); }
+
+if [ "$ONCE" = 1 ]; then
+  log "Tctl=$(readtemp)C governor max=$(getp $CUR Max) min=$(getp $CUR Min) base=$(getp $INI Max)"
+  exit 0
+fi
+
+BASE=""; CAP=""; last_up=0; last_log=0
+restore() {
+  if [ -n "$CAP" ] && [ -n "$BASE" ] && [ "$CAP" -lt "$BASE" ]; then
+    log "exiting, restoring max=$BASE"; setmax "$BASE"
+  fi
+  exit 0
+}
+trap restore INT TERM
+
+log "watching $TCTL (hot>=${HOT}C cool<=${COOL}C step -$STEP_DOWN/+$STEP_UP floor $FLOOR) dry-run=$DRY"
+while :; do
+  t=$(readtemp) || { sleep "$INTERVAL"; continue; }
+  # Base = governor's configured max (Initial range); re-read so restarts are handled
+  b=$(getp $INI Max); [ -n "$b" ] && [ "$b" -gt 0 ] && BASE=$b
+  m=$(getp $CUR Max); mn=$(getp $CUR Min)
+  if [ -z "$BASE" ] || [ -z "$m" ]; then
+    (( SECONDS - last_log >= 30 )) && { log "governor not reachable on D-Bus, waiting"; last_log=$SECONDS; }
+    sleep 5; continue
+  fi
+  [ -z "$CAP" ] && CAP=$BASE
+  floor=$FLOOR; [ -n "$mn" ] && [ "$mn" -gt "$floor" ] && floor=$mn
+  if [ "$t" -ge "$HOT" ]; then
+    new=$(( CAP - STEP_DOWN )); [ "$new" -lt "$floor" ] && new=$floor
+    if [ "$new" -ne "$CAP" ]; then log "Tctl ${t}C hot: max $CAP -> $new MHz"; CAP=$new; fi
+  elif [ "$t" -le "$COOL" ] && [ "$CAP" -lt "$BASE" ] && (( SECONDS - last_up >= UP_EVERY )); then
+    new=$(( CAP + STEP_UP )); [ "$new" -gt "$BASE" ] && new=$BASE
+    log "Tctl ${t}C cool: max $CAP -> $new MHz"; CAP=$new; last_up=$SECONDS
+  fi
+  # Only enforce while throttling, so manual range changes are left alone when cool
+  if [ "$CAP" -lt "$BASE" ] && [ "$m" != "$CAP" ]; then setmax "$CAP" || log "set max failed"
+  elif [ "$CAP" -ge "$BASE" ] && [ "$m" -lt "$BASE" ] && [ -n "$throttled" ]; then setmax "$BASE"; fi
+  if [ "$CAP" -lt "$BASE" ]; then throttled=1; else throttled=""; fi
+  sleep "$INTERVAL"
+done

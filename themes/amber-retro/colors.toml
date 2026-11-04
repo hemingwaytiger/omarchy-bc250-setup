@@ -1,0 +1,34 @@
+# amber-retro: custom theme (not from upstream Omarchy). Amber monochrome CRT terminal.
+mode = "dark"
+
+accent = "#FFB000"
+selection = "#3A2800"
+muted = "#5C3F00"
+
+background = "#0C0800"
+dark_background = "#080500"
+darker_background = "#050300"
+lighter_background = "#1A1206"
+
+foreground = "#FFB000"
+dark_foreground = "#8A5F00"
+light_foreground = "#FFC640"
+bright_foreground = "#FFD27A"
+
+hyprland_active_border = "rgba(ffb000ee) rgba(cc7a00ee) 45deg"
+
+red = "#FF7A1A"
+yellow = "#FFCC33"
+orange = "#FF9500"
+green = "#E8A317"
+cyan = "#FFC870"
+blue = "#D08A00"
+magenta = "#FF9E40"
+brown = "#7A5200"
+
+bright_red = "#FF9F5A"
+bright_yellow = "#FFE08A"
+bright_green = "#FFC24D"
+bright_cyan = "#FFDDA0"
+bright_blue = "#F0B040"
+bright_magenta = "#FFBE80"

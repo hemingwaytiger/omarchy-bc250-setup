@@ -1,0 +1,15 @@
+[Unit]
+Description=AMD BC-250 CPU overclock (optional, left disabled)
+Documentation=https://github.com/bc250-collective/bc250_smu_oc
+# omarchy-bc250-setup installs this unit and does not enable it.
+# Starting it changes CPU clocks. The Python module bc250_smu is not installed
+# by this setup; the unit cannot succeed until that upstream package is installed.
+ConditionPathExists=/usr/local/lib/bc250-smu-oc/bc250_apply.py
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python /usr/local/lib/bc250-smu-oc/bc250_apply.py --apply /etc/bc250-smu-oc.conf
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,26 @@
+Vader theme wallpapers - sources and licenses
+All images cropped/scaled to 1920x1080; the brighter ones darkened slightly for terminal readability.
+
+1-lava-field-night.jpg
+  Source: https://commons.wikimedia.org/wiki/File:Eruption_at_Night_-_Flickr_-_incidencematrix.jpg
+  Author/credit: incidencematrix
+  License: CC BY 2.0 https://creativecommons.org/licenses/by/2.0
+  Original size: 6000x3515
+
+2-red-spider-nebula.jpg
+  Source: https://commons.wikimedia.org/wiki/File:Red_Spider_Nebula_NGC_6537_(Hubble%E2%80%99s_view)_(potm2510c).jpg
+  Author/credit: ESA/Hubble & NASA, G. Mellema (Leiden University, the Netherlands)
+  License: CC BY 4.0 https://creativecommons.org/licenses/by/4.0
+  Original size: 3168x1785
+
+3-halemaumau-night.jpg
+  Source: https://commons.wikimedia.org/wiki/File:Halema%E2%80%98uma%E2%80%98u_from_Jaggar_Museum_at_night.jpg
+  Author/credit: National Park Service/Keith Burnett
+  License: Public domain
+  Original size: 2144x1424
+
+4-painted-smoky-hall.jpg
+  Original painted-style artwork generated for Tracy with Grok Bot's image tool (generic scene: smoky stone hall, red light blade; no characters or logos).
+
+5-painted-red-planet-station.jpg
+  Original painted-style artwork generated for Tracy with Grok Bot's image tool (generic scene: dark space station against a red planet; no logos).

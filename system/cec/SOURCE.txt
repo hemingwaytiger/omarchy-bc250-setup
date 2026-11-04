@@ -1,0 +1,6 @@
+bc250-cec 1-17
+Upstream: https://github.com/MastaG/linux-cachyos-bc250
+License: GPL-2.0-only
+These files match the package installed on the working machine.
+install.sh installs the pacman package when the repository is reachable,
+and copies this tree only if that package is not available.

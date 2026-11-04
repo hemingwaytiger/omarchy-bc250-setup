@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Update official packages, AUR packages (yay), Omarchy, and Flatpak.
+set -u
+
+status=0
+
+printf '==> Official packages (pacman)\n'
+sudo pacman -Syu || status=1
+
+printf '==> AUR packages (yay)\n'
+if command -v yay >/dev/null 2>&1; then
+  yay -Syu || status=1
+else
+  printf 'yay is not installed. Run ./install.sh from omarchy-bc250-setup.\n' >&2
+  status=1
+fi
+
+printf '==> Omarchy\n'
+if command -v omarchy-update >/dev/null 2>&1; then
+  omarchy-update || status=1
+elif command -v omarchy >/dev/null 2>&1; then
+  omarchy update || status=1
+else
+  printf 'omarchy is not on PATH. Skipped.\n'
+fi
+
+if command -v flatpak >/dev/null 2>&1; then
+  printf '==> Flatpak\n'
+  flatpak update -y || status=1
+fi
+
+exit "$status"

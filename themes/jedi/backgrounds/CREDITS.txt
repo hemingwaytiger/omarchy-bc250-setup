@@ -1,0 +1,26 @@
+Jedi theme wallpapers - sources and licenses
+All images cropped/scaled to 1920x1080; the brighter ones darkened slightly for terminal readability.
+
+1-tikal-sunrise.jpg
+  Source: https://commons.wikimedia.org/wiki/File:USAID_Measuring_Impact_Conservation_Enterprise_Retrospective_(Guatemala;_Rainforest_Alliance)_(26431867928).jpg
+  Author/credit: USAID Biodiversity & Forestry
+  License: Public domain
+  Original size: 6000x4000
+
+2-erg-chebbi-sunset.jpg
+  Source: https://commons.wikimedia.org/wiki/File:Erg_Chebbi_sunset.jpg
+  Author/credit: Thomas Fuhrmann
+  License: CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0
+  Original size: 6630x4422
+
+3-misty-forest.jpg
+  Source: https://commons.wikimedia.org/wiki/File:Misty_Forest_Schnebelhorn.jpg
+  Author/credit: Jason Conzett
+  License: CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0
+  Original size: 4686x3099
+
+4-painted-temple-dusk.jpg
+  Original painted-style artwork generated for Tracy with Grok Bot's image tool (generic scene: stone temple at dusk with a blue glow).
+
+5-painted-twin-suns-homestead.jpg
+  Original painted-style artwork generated for Tracy with Grok Bot's image tool (generic scene: twin suns over a desert homestead).

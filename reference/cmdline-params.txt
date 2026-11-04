@@ -1,0 +1,22 @@
+# Working machine command line, with the disk identity removed.
+# The original also had root=UUID=<that machine's root> and rootflags=subvol=/@.
+# install.sh does not copy those. It only adds the parameters in
+# system/cmdline/params.txt, plus amdgpu.cs_eight_core_map=1 when the
+# installed BC-250 kernel still accepts it.
+#
+# quiet, splash, rw, and loglevel=0 were also set. A fresh Omarchy install
+# already supplies its own quiet splash and loglevel through Limine, so the
+# installer leaves those lines alone.
+
+quiet
+nowatchdog
+splash
+rw
+systemd.zram=0
+zswap.enabled=1
+zswap.max_pool_percent=25
+zswap.compressor=lz4
+loglevel=0
+ttm.pages_limit=3145728
+amdgpu.vm_update_mode=3
+amdgpu.cs_eight_core_map=1

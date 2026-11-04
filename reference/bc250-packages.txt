@@ -1,0 +1,160 @@
+Installed From  : bc250-cachyos
+Name            : bc250-cec
+Version         : 1-17
+Description     : BC-250 HDMI CEC: identify as SteamOS on the CEC bus and retrain the display link when the display powers on or switches to it
+Architecture    : any
+URL             : https://github.com/MastaG/linux-cachyos-bc250
+Licenses        : GPL-2.0-only
+Groups          : None
+Provides        : None
+Depends On      : v4l-utils  bash  python  python-evdev
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 32.12 KiB
+Packager        : Unknown Packager
+Build Date      : Wed 07 Oct 2026 03:31:59 PM EDT
+Install Date    : Fri 16 Oct 2026 11:35:24 PM EDT
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : SHA-256 Sum
+
+Installed From  : bc250-cachyos
+Name            : bc250-dual-audio
+Version         : 0.15-1
+Description     : Dual-output audio policy for the AMD BC-250: native HDMI/DP plus a switchable Dolby Digital 5.1 (AC3) virtual sink
+Architecture    : any
+URL             : https://github.com/MastaG/bc250-dual-audio
+Licenses        : custom
+Groups          : None
+Provides        : None
+Depends On      : wireplumber  pipewire  alsa-plugins  alsa-utils
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 88.60 KiB
+Packager        : Unknown Packager
+Build Date      : Fri 02 Oct 2026 01:12:44 PM EDT
+Install Date    : Fri 16 Oct 2026 11:31:36 PM EDT
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : SHA-256 Sum
+
+Installed From  : None
+Name            : cyan-skillfish-governor-smu
+Version         : 0.4.14-1
+Description     : GPU governor for the AMD Cyan Skillfish APU
+Architecture    : x86_64
+URL             : https://github.com/filippor/cyan-skillfish-governor/tree/smu
+Licenses        : MIT
+Groups          : None
+Provides        : None
+Depends On      : libdrm
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 3.40 MiB
+Packager        : Unknown Packager
+Build Date      : Fri 16 Oct 2026 11:09:50 PM EDT
+Install Date    : Fri 16 Oct 2026 11:10:44 PM EDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : None
+
+Installed From  : bc250-cachyos
+Name            : linux-cachyos-bc250
+Version         : 7.3.0-4.341
+Description     : The Linux EEVDF + LTO + AutoFDO + Propeller Cachy Sauce Kernel by CachyOS with other patches and improvements. kernel and modules
+Architecture    : x86_64
+URL             : https://github.com/CachyOS/linux-cachyos
+Licenses        : GPL-2.0-only
+Groups          : None
+Provides        : VIRTUALBOX-GUEST-MODULES  WIREGUARD-MODULE  KSMBD-MODULE  V4L2LOOPBACK-MODULE  NTSYNC-MODULE  VHBA-MODULE  ADIOS-MODULE  linux-cachyos-lto=7.3.0-4.341
+Depends On      : coreutils  kmod  initramfs
+Optional Deps   : wireless-regdb: to set the correct wireless channels of your country [installed]
+                  linux-firmware: firmware images needed for some devices [installed]
+                  modprobed-db: Keeps track of EVERY kernel module that has ever been probed - useful for those of us who make localmodconfig
+                  scx-scheds: to use sched-ext schedulers [installed]
+Required By     : linux-cachyos-bc250-headers  ntsync-autoload
+Optional For    : proton-cachyos-native-bc250  proton-cachyos-slr  steam  wine-cachyos-opt
+Conflicts With  : None
+Replaces        : linux-cachyos-lto
+Installed Size  : 151.16 MiB
+Packager        : Unknown Packager
+Build Date      : Sat 24 Oct 2026 04:12:14 AM EDT
+Install Date    : Mon 26 Oct 2026 08:20:28 PM EDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : SHA-256 Sum
+
+Installed From  : bc250-cachyos
+Name            : proton-cachyos-native-bc250
+Version         : 1:11.0.20261015-1.344
+Description     : A compatibility tool for Steam Play based on Wine and additional components, experimental branch with extra CachyOS flavour (native build)
+Architecture    : x86_64
+URL             : https://github.com/CachyOS/proton-cachyos
+Licenses        : custom
+Groups          : None
+Provides        : None
+Depends On      : attr  cabextract  desktop-file-utils  fontconfig  flac  freetype2  libgcc  gettext  glib2  glibc  libgudev  libnsl  libpcap  libunwind  libvpx  libwebp  libx11  libxcursor  libxext  libxkbcommon  libxml2  libxi  libxrandr  mpg123  pipewire  python  python-six  rtkit  speex  speexdsp  atk  cairo  curl  dbus-glib  freeglut  gdk-pixbuf2  glu  lcms2  libcaca  libcanberra  dbus  libdrm  libice  libibus  libnm  libusb  libvdpau  libvorbis  libxft  libxmu  libxrender  libxtst  nspr  openal  pango  sdl2-compat  pipewire  librsvg  libsm  libtheora  vulkan-driver  unzip  wayland  xz
+Optional Deps   : alsa-lib [installed]
+                  alsa-plugins [installed]
+                  ffmpeg [installed]
+                  gnutls [installed]
+                  gtk3 [installed]
+                  hip-runtime-amd
+                  libgphoto2
+                  libpulse [installed]
+                  libva [installed]
+                  libxcomposite [installed]
+                  libxinerama [installed]
+                  opencl-icd-loader [installed]
+                  pcsclite [installed]
+                  samba
+                  steam [installed]
+                  umu-launcher [installed]
+                  unixodbc
+                  v4l-utils [installed]
+                  vulkan-icd-loader [installed]
+                  NTSYNC-MODULE [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.36 GiB
+Packager        : Unknown Packager
+Build Date      : Sat 24 Oct 2026 07:15:28 PM EDT
+Install Date    : Mon 26 Oct 2026 08:21:05 PM EDT
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : SHA-256 Sum
+
+Installed From  : bc250-cachyos
+Name            : protonge-latest-bc250
+Version         : 11.11-344
+Description     : GE-Proton GE-Proton11-11 for the AMD BC-250, with a pinned FSR4 provider, OptiScaler and preset
+Architecture    : x86_64
+URL             : https://github.com/GloriousEggroll/proton-ge-custom
+Licenses        : custom
+Groups          : None
+Provides        : None
+Depends On      : python
+Optional Deps   : steam: the client that runs this compatibility tool [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.31 GiB
+Packager        : Unknown Packager
+Build Date      : Sat 24 Oct 2026 06:57:28 PM EDT
+Install Date    : Mon 26 Oct 2026 08:21:12 PM EDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : SHA-256 Sum
+
